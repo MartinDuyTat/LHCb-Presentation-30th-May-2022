@@ -207,7 +207,7 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{$F_+$ measurement with CP tags}
+\begin{frame}{$F_+$ measurement with CP, $K^0_S\pi^+\pi^-$ and $K^0_L\pi^+\pi^-$ tags}
   \begin{figure}
     \begin{subfigure}{0.40\textwidth}
       \includegraphics[width = 1.0\textwidth]{Plots/CPeven_fraction_combination_CPtags.png}
@@ -224,27 +224,246 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}{$F_+$ combination}
+  \begin{figure}
+    \includegraphics[width = 0.55\textwidth]{Plots/FPlus_contours.png}
+    \caption{$F_+$ combination}
+  \end{figure}
+  \vspace{-0.6cm}
+  \begin{itemize}
+    \item{Observe large anti-correlation in $K_L\pi\pi$ because $F^{K_L\pi\pi}_+\approx 0.354$}
+    \begin{itemize}
+      \item{Yield of $K_L\pi\pi$ is \underline{twice} as large as that of $K_S\pi\pi$}
+      \item{Fractional bin yields \underline{and} total yield contains information about $F_+$}
+      \item{When $K_L\pi\pi$ BF is available, combine all tags!}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Efficiency corrections}
+
+\begin{frame}{Efficiency corrections}
+  \begin{itemize}
+    \setlength\itemsep{1.5em}
+    \item{All yields must be corrected for efficiency}
+    \item{Problem: BESIII simulation uses a very old $KK\pi\pi$ model in EvtGen}
+    \item{Solution: Reweight BESIII simulation to look like the LHCb model}
+    \begin{itemize}
+      \setlength\itemsep{0.5em}
+      \item{Use Python hep\textunderscore ml Gradient Boosted Reweighter}
+      \item{Variables:}
+      \begin{enumerate}
+        \item{$m^2(K^+K^-)$}
+        \item{$m^2(K^+\pi^-)$}
+        \item{$m^2(K^-\pi^+)$}
+        \item{$m^2(\pi^+\pi^-)$}
+        \item{$m^2(K^+K^-\pi^+)$}
+      \end{enumerate}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Naive efficiency correction}
+  \begin{figure}
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s01_BeforeReweighting.png}
+      \caption{$m^2(K^+K^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s03_BeforeReweighting.png}
+      \caption{$m^2(K^+\pi^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s12_BeforeReweighting.png}
+      \caption{$m^2(K^-\pi^+)$}
+    \end{subfigure}
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_BeforeReweighting.png}
+      \caption{$m^2(\pi^+\pi^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s012_BeforeReweighting.png}
+      \caption{$m^2(K^+K^-\pi^+)$}
+    \end{subfigure}
+    \caption{Before reweighting}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Naive efficiency correction}
+  \begin{figure}
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s01_AfterReweighting.png}
+      \caption{$m^2(K^+K^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s03_AfterReweighting.png}
+      \caption{$m^2(K^+\pi^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s12_AfterReweighting.png}
+      \caption{$m^2(K^-\pi^+)$}
+    \end{subfigure}
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_AfterReweighting.png}
+      \caption{$m^2(\pi^+\pi^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s012_AfterReweighting.png}
+      \caption{$m^2(K^+K^-\pi^+)$}
+    \end{subfigure}
+    \caption{After reweighting}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Does the naive reweighting work?}
+  \begin{figure}
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s01_DataMCMismatch_BeforeReweighting.png}
+      \caption{$m^2(K^+K^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s03_DataMCMismatch_BeforeReweighting.png}
+      \caption{$m^2(K^+\pi^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s12_DataMCMismatch_BeforeReweighting.png}
+      \caption{$m^2(K^-\pi^+)$}
+    \end{subfigure}
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_DataMCMismatch_BeforeReweighting.png}
+      \caption{$m^2(\pi^+\pi^-)$}
+    \end{subfigure}%
+    \begin{subfigure}{0.33\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s012_DataMCMismatch_BeforeReweighting.png}
+      \caption{$m^2(K^+K^-\pi^+)$}
+    \end{subfigure}
+    \caption{Single tag $D\to KK\pi\pi$ in data and MC after reweighting}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Quantum correlated LHCb model}
+  \begin{itemize}
+    \setlength\itemsep{1.5em}
+    \item{Problem with naive reweighting:}
+    \begin{itemize}
+    \setlength\itemsep{1.0em}
+      \item{LHCb model assumes a pure $D^0\to K^+K^-\pi^+\pi^-$ decay}
+      \item{\underline{No} quantum correlations}
+      \item{Example: If tag is $D\to KK$, the $D\to KK\pi\pi$ decay will be CP odd!}
+      \item{Quantum correlations will affect phase space distribution $\implies$ Efficiencies could change}
+    \end{itemize}
+    \item{Solution: Separate reweighters for CP even/odd $D\to K^+K^-\pi^+\pi^-$}
+    \begin{itemize}
+    \setlength\itemsep{1.0em}
+      \item{CP even tags: Use efficiencies after reweighting to CP odd model}
+      \item{CP odd tags: Use efficiencies after reweighting to CP even model}
+      \item{$K_{S, L}\pi\pi$ tags: Do a weighted average of the two efficiencies}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Before weighting to CP even/odd models}
+  \begin{figure}
+    \begin{subfigure}{0.50\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_BeforeReweighting_CPEven.png}
+      \caption{CP even}
+    \end{subfigure}%
+    \begin{subfigure}{0.50\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_BeforeReweighting_CPOdd.png}
+      \caption{CP odd}
+    \end{subfigure}
+    \caption{$m^2(\pi^+\pi^-)$ before reweighting}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{After weighting to CP even/odd models}
+  \begin{figure}
+    \begin{subfigure}{0.50\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_AfterReweighting_CPEven.png}
+      \caption{CP even}
+    \end{subfigure}%
+    \begin{subfigure}{0.50\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_AfterReweighting_CPOdd.png}
+      \caption{CP odd}
+    \end{subfigure}
+    \caption{$m^2(\pi^+\pi^-)$ after reweighting}
+  \end{figure}
+  \vspace{-0.4cm}
+  \begin{tabular}{cccc}
+    \hline
+    No reweighting & Naive reweighting & CP even model & CP odd model \\
+    \hline
+    $18.0\%$       & $19.0\%$          & $18.1\%$      & $21.9\%$ \\
+    \hline
+  \end{tabular}
+\end{frame}
+
+\begin{frame}{Agreement between quantum correlated data and model}
+  \begin{itemize}
+    \item{Note: LHCb model knows \underline{nothing} about quantum correlations}
+    \item{$D^0$/$\bar{D^0}$ amplitudes simply combined to obtain CP even/odd models}
+    \item{Important question: Can the model describe quantum correlated double tag data at all? Answer: Yes!}
+  \end{itemize}
+  \begin{figure}
+    \begin{subfigure}{0.50\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_DataModel_CPEvenTags.png}
+      \caption{Double tags of $KK\pi\pi$ vs CP even}
+    \end{subfigure}%
+    \begin{subfigure}{0.50\textwidth}
+      \includegraphics[width = 1.0\textwidth]{Plots/s23_DataModel_CPOddTags.png}
+      \caption{Double tags of $KK\pi\pi$ vs CP odd}
+    \end{subfigure}
+    \caption{$m^2(\pi^+\pi^-)$ in double tags, compared with CP even/odd LHCb models}
+  \end{figure}
+\end{frame}
+
+\subsection{Current status}
+
+\begin{frame}{Current status}
+  \begin{itemize}
+    \setlength\itemsep{1.5em}
+    \item{Final fit result: $F_+ = \SI{0.73(4)}{}$}
+    \begin{itemize}
+      \item{First model-independent measurement}
+      \item{Compare with model prediction: $F_+ = 0.736$}
+      \item{Good news for GLW analyses: Can include $D\to KK\pi\pi$}
+    \end{itemize}
+    \item{Systematics studies finished}
+    \begin{itemize}
+      \item{Very small, completely statistics dominated}
+    \end{itemize}
+    \item{Analysis note (MEMO) written up and reviewed by charm conveners}
+    \begin{itemize}
+      \item{All three conveners approved last week}
+      \item{Next step: Present to BESIII on Friday before entering RC}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+        
+
 \section{Summary}
 
 \begin{frame}{Summary}
   \begin{itemize}
-    \setlength\itemsep{1.5em}
+    \setlength\itemsep{1.0em}
     \item{LHCb $B^\pm\to(K^+K^-\pi^+\pi^-)_Dh^\pm$ GGSZ+GLW analysis:}
     \begin{itemize}
-      \setlength\itemsep{0.5em}
+      \setlength\itemsep{0.0em}
       \item{Final result of GGSZ part: $\gamma = \SI{103(14)}{}$}
       \item{In RC, currently waiting for further comments}
       \item{Sign of $s_i$ remains uncertain}
     \end{itemize}
     \item{BESIII $D\to K^+K^-\pi^+\pi^-$ strong-phase analysis:}
     \begin{itemize}
-      \setlength\itemsep{0.5em}
-      \item{Final result: $F_+ = \SI{0.73(4)}{}$}
-      \begin{itemize}
-        \item{First model independent measurement of $F_+$ for $D^0\to K^+K^-\pi^+\pi^-$}
-      \end{itemize}
+      \setlength\itemsep{0.0em}
+      \item{First model-independent measurement: $F_+ = \SI{0.73(4)}{}$}
       \item{Analysis required model-dependent efficiency corrections}
       \item{Will present to BESIII on Friday 26th May before entering RC}
+    \end{itemize}
+    \item{What now?}
+    \begin{itemize}
+      \item{Currently studying PID performance with TORCH}
+      \item{Start at CERN next Monday!}
     \end{itemize}
   \end{itemize}
   \begin{center}
